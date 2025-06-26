@@ -9,11 +9,11 @@ export default function useScreenHooks() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const { login } = useGlobal();
-
-  async function handleSubmit(event) {
+ 
+  async function handleSubmit( event) {
     event.preventDefault();
     const response = await ApiService.login({ email, password });
-    login(response.payload.token, response.payload.user);
+    login(response.token, response.user);
     navigate("/pets");
   }
 

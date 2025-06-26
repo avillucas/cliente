@@ -14,19 +14,20 @@ export default function useScreenHooks() {
 
   useEffect(() => {
     document.title = "Lista de Mascotas";
-    const fetchAll = async () => {
+
+
+    fetchAll();
+  }, []);
+      const fetchAll = async () => {
       try {
         if (!isLoading) show();
         const response = await ApiService.getAll();
-        setPets(response.payload);
+        setPets(response.data);
         hide();
       } catch (error) {
         setErrors(error);
       }
     };
-
-    fetchAll();
-  }, []);
 
   const handleDetail = (e,petId) => {
     e.preventDefault()
