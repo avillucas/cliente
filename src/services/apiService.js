@@ -1,9 +1,9 @@
-import axios, { AxiosError } from "axios";
+import axios from "axios";
 import Swal from "sweetalert2";
 import { clearAuth, getToken } from "./authStorageService";
 import { callHideSpinner } from "../context/SpinnerContext";
 
-const http = axios.create({ baseURL: "http://localhost/api/v1/" });
+const http = axios.create({ baseURL: "http://localhost:3000/api/v1/" });
 
 http.interceptors.request.use((config) => {
   const token = getToken();
@@ -69,28 +69,4 @@ function logoutAndRedirect() {
 }
 
 
-const register = async (data) => {
-  const response = await http.post(`/auth/register`, data);
-  return response.data;
-};
-const login = async (data) => {
-  const response = await http.post(`/auth/login`, data);
-  return response.data;
-};
-
-const getPetById = async (id) => {
-  const response = await http.get(`/pets/${id}`);
-  return response.data;
-};
-
-const getAll = async () => {
-  const response = await http.get(`/pets`);
-  return response.data;
-};
-
-export const ApiService = {
-  register,
-  login,
-  getPetById,
-  getAll
-};
+export default http;

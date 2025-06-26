@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { ApiService } from "../../../services/apiService";
+import { ApiService } from "./api";
 import { useSpinner } from "../../../context/SpinnerContext";
 import { useGlobal } from "../../../context/GlobalContext";
 import { useNavigate } from "react-router-dom";

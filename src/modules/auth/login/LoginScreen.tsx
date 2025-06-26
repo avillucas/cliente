@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import useScreenHooks from "./useScreenHooks";
-import "./login.css"
+import "./style.css"
 interface LoginScreenProps {}
 
 const LoginScreen: React.FC<LoginScreenProps> = () => {
@@ -15,8 +15,7 @@ const LoginScreen: React.FC<LoginScreenProps> = () => {
         
           <img
             className="mb-4"
-            src="/assets/img/logo-guardianes.png"
-            
+            src="/assets/img/logo-guardianes.png"            
             width="129"
             height="41"
           />

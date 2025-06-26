@@ -5,6 +5,7 @@ export default function Nav() {
   const { user } = useGlobal();
 
   return (
+    user && // Check if user is defined
     <nav
       id="sidebarMenu"
       className="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse"
@@ -16,7 +17,6 @@ export default function Nav() {
               <span data-feather="home"></span>
               Panel de control
             </NavLink>
-
             <NavLink to="/pets" className="nav-link ">
               <span data-feather="file"></span>
               Mascotas
