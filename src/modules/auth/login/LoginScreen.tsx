@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import useScreenHooks from "./useScreenHooks";
-import "./login.css";
+import "./login.css"
 interface LoginScreenProps {}
 
 const LoginScreen: React.FC<LoginScreenProps> = () => {
@@ -12,9 +12,11 @@ const LoginScreen: React.FC<LoginScreenProps> = () => {
       <div className="login-container bg-dark text-white p-4 rounded shadow col-10 col-md-6">
         <h3 className="text-center mb-4">Iniciar Sesión</h3>
         <form className="form-signin" onSubmit={handleSubmit}>
+        
           <img
             className="mb-4"
-            src="/img/logo-guardianes.png"
+            src="/assets/img/logo-guardianes.png"
+            
             width="129"
             height="41"
           />
@@ -64,3 +66,5 @@ const LoginScreen: React.FC<LoginScreenProps> = () => {
     </div>
   );
 };
+
+export default LoginScreen;

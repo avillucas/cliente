@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from "react";
-import { ApiService } from "./api";
+import { ApiService } from "../../../services/apiService";
 import { useGlobal } from "../../../context/GlobalContext";
 import { useNavigate } from "react-router-dom";
 

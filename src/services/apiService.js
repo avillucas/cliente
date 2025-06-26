@@ -68,4 +68,29 @@ function logoutAndRedirect() {
   window.location.href = "/login";
 }
 
-export default http;
+
+const register = async (data) => {
+  const response = await http.post(`/auth/register`, data);
+  return response.data;
+};
+const login = async (data) => {
+  const response = await http.post(`/auth/login`, data);
+  return response.data;
+};
+
+const getPetById = async (id) => {
+  const response = await http.get(`/pets/${id}`);
+  return response.data;
+};
+
+const getAll = async () => {
+  const response = await http.get(`/pets`);
+  return response.data;
+};
+
+export const ApiService = {
+  register,
+  login,
+  getPetById,
+  getAll
+};
