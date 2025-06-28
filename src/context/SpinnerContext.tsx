@@ -12,7 +12,13 @@ export function callHideSpinner() {
   hideSpinner && hideSpinner();
 }
 
-const SpinnerContext = createContext(undefined);
+type SpinnerContextType = {
+  show: (title?: string) => void;
+  hide: () => void;
+  isLoading: boolean;
+};
+
+const SpinnerContext = createContext<SpinnerContextType | undefined>(undefined);
 
 export function SpinnerProvider({ children }: { children: React.ReactNode }) {
   const [isLoading, setIsLoading] = useState(false);

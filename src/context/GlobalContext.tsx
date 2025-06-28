@@ -1,20 +1,24 @@
-import {
-  createContext,
-  useContext,
-  useState,
-  useEffect,
-  type ReactNode,
-} from "react";
+import {   useContext, createContext, useEffect, useState } from "react";
 import {
   loadAuth,
   saveAuth,
   clearAuth,
 } from "../services/authStorageService";
-const GlobalContext = createContext(undefined);
 
-export function GlobalProvider({ children }: { children: ReactNode }) {
-  const [token, setToken] = useState(null);
-  const [user, setUser] = useState(null);
+
+
+type GlobalContextType = {
+  token: string | null;
+  user: any;
+  login: (token: string, user: any) => void;
+  logout: () => void;
+};
+
+export const GlobalContext = createContext<GlobalContextType | undefined>(undefined);
+
+export function GlobalProvider({ children }: { children: React.ReactNode }) {
+  const [token, setToken] = useState<string | null>(null);
+  const [user, setUser] = useState<any>(null);
 
   useEffect(() => {
     const { token, user } = loadAuth();
@@ -38,7 +42,6 @@ export function GlobalProvider({ children }: { children: ReactNode }) {
     setUser(null);
     clearAuth();
   };
-
   return (
     <GlobalContext.Provider value={{ token, user, login, logout }}>
       {children}
@@ -46,8 +49,10 @@ export function GlobalProvider({ children }: { children: ReactNode }) {
   );
 }
 
+
 export function useGlobal() {
   const ctx = useContext(GlobalContext);
   if (!ctx) throw new Error("useGlobal debe usarse dentro de <GlobalProvider>");
   return ctx;
 }
+  
