@@ -23,7 +23,9 @@ export const IndexScreen: React.FC = () => {
               <h1 className="h2">Mascotas</h1>
               <div className="btn-toolbar mb-2 mb-md-0">
                 <a
-                  href="/pets/add"
+                  onClick={(e) => {
+                    handleCreate(e);
+                  }}
                   type="button"
                   className="btn btn-sm btn-outline-secondary"
                 >
@@ -34,17 +36,19 @@ export const IndexScreen: React.FC = () => {
             <div className="table-responsive">
               <table className="table table-striped table-sm">
                 <thead>
-                  <th>Nombre</th>
-                  <th>Edad</th>
-                  <th>Tipo</th>
-                  <th>Acciones</th>
+                  <tr>
+                    <th>Nombre</th>
+                    <th>Edad</th>
+                    <th>Tipo</th>
+                    <th>Acciones</th>
+                  </tr>
                 </thead>
                 <tbody>
-                  {pets.length === 0 ? (
+                  {Array.isArray(pets) && pets.length === 0 ? (
                     <tr>
-                      <td>No hay películas disponibles.</td>
+                      <td colSpan={4}>No hay mascotas disponibles.</td>
                     </tr>
-                  ) : (
+                  ) : Array.isArray(pets) ? (
                     pets.map((pet) => (
                       <tr key={pet.id}>
                         <td>{pet.name}</td>
@@ -78,6 +82,10 @@ export const IndexScreen: React.FC = () => {
                         </td>
                       </tr>
                     ))
+                  ) : (
+                    <tr>
+                      <td colSpan={4}>No hay mascotas disponibles.</td>
+                    </tr>
                   )}
                 </tbody>
               </table>

@@ -11,17 +11,12 @@ export default function Header() {
     navigate("/login");
   };
 
-  return (
+  return (user && (
     <header className="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-      <a className="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">
-       
-         <NavLink
-                  to="/pets"
-                  className="text-white text-decoration-none"
-                >
-           Guardianes de patitas
-                </NavLink>
-      </a>
+      <NavLink to="/pets" className="text-white text-decoration-none">
+        Guardianes de patitas
+      </NavLink>
+
       <button
         className="navbar-toggler position-absolute d-md-none collapsed"
         type="button"
@@ -33,17 +28,15 @@ export default function Header() {
       >
         <span className="navbar-toggler-icon"></span>
       </button>
-      {user && (
-        <div className="navbar-nav">
-          <div className="nav-item text-nowrap">
-            <form onSubmit={handleLogout} className="d-inline">
-              <button type="submit" className="nav-link px-3">
-                Cerrar sesión
-              </button>
-            </form>
-          </div>
+      <div className="navbar-nav">
+        <div className="nav-item text-nowrap">
+          <form onSubmit={handleLogout} className="d-inline">
+            <button type="submit" className="nav-link px-3">
+              Cerrar sesión
+            </button>
+          </form>
         </div>
-      )}
+      </div>
     </header>
-  );
+  ));
 }

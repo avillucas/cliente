@@ -3,6 +3,7 @@ import Header from "./shared/Header";
 import Footer from "./shared/Footer";
 import Nav from "./shared/Nav";
 import Container from "react-bootstrap/Container";
+import './style.css';
 export default function Layout() {
   return (
     <div>

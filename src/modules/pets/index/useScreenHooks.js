@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { ApiService } from "./api";
 import { useSpinner } from "../../../context/SpinnerContext";
 import { useGlobal } from "../../../context/GlobalContext";
@@ -8,24 +8,26 @@ import Swal from "sweetalert2";
 export default function useScreenHooks() {
   const { user } = useGlobal();
   const [pets, setPets] = useState([]);
-  const [errors, setErrors] = useState(null);
+  const [errors] = useState(null);
   const { show, hide, isLoading } = useSpinner();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    document.title = "Lista de Mascotas";
-    fetchAll();
-  });
-  const fetchAll = async () => {
+  const fetchAll = useCallback(async () => {
     try {
       if (!isLoading) show();
       const response = await ApiService.getAll();
       setPets(response.data);
       hide();
     } catch (error) {
-      setErrors(error);
+      console.error("Error fetching pets:", error);
+      hide();
     }
-  };
+  }, [isLoading, show, hide]);
+
+  useEffect(() => {
+    document.title = "Lista de Mascotas";
+    fetchAll();
+  }, [fetchAll]);
 
   const handleDetail = (e, petId) => {
     e.preventDefault();
@@ -48,7 +50,7 @@ export default function useScreenHooks() {
     }).then((result) => {
       if (result.isConfirmed) {
         //@todo realizar la peticion y refrezcar
-        navigate(`/movies/delete/${petId}`);
+        navigate(`/pets/delete/${petId}`);
       }
     });
   };
