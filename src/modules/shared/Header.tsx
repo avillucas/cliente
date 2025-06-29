@@ -7,7 +7,7 @@ export default function Header() {
 
   const handleLogout = (e: React.FormEvent) => {
     e.preventDefault();
-    logout();
+    logout(); 
     navigate("/login");
   };
 
