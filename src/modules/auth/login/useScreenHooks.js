@@ -3,13 +3,11 @@ import { ApiService } from "./api";
 import { useGlobal } from "../../../context/GlobalContext";
 import { useNavigate } from "react-router-dom";
 import { useSpinner } from "../../../context/SpinnerContext";
-import { useSpinner } from "../../../context/SpinnerContext";
 
 export default function useScreenHooks() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const { show, isLoading } = useSpinner();
   const { show, isLoading } = useSpinner();
   const { login } = useGlobal();
 
