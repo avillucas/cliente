@@ -60,8 +60,8 @@ const LoginScreen: React.FC<LoginScreenProps> = () => {
               Registrate
             </Link>
           </small>
-        </div>{" "}
-      </div>{" "}
+        </div>
+      </div>
     </div>
   );
 };
