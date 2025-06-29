@@ -2,6 +2,13 @@ import React from "react";
 import useScreenHooks from "./useScreenHooks";
 import { Button } from "react-bootstrap";
 
+type Pet = {
+  id: string | number;
+  name: string;
+  age: number;
+  type: string;
+};
+
 export const IndexScreen: React.FC = () => {
   const {
     pets,
@@ -12,6 +19,15 @@ export const IndexScreen: React.FC = () => {
     handleCreate,
     handleDetail,
     handleEdit,
+  }: {
+    pets: Pet[];
+    isLoading: boolean;
+    user: any;
+    errors: any;
+    handleDelete: (e: React.MouseEvent, id: Pet["id"]) => void;
+    handleCreate: (e: React.MouseEvent) => void;
+    handleDetail: (e: React.MouseEvent, id: Pet["id"]) => void;
+    handleEdit: (e: React.MouseEvent, id: Pet["id"]) => void;
   } = useScreenHooks();
 
   return (
