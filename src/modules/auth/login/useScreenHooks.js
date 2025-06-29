@@ -11,7 +11,6 @@ export default function useScreenHooks() {
   const { show, isLoading } = useSpinner();
   const { login } = useGlobal();
 
-  async function handleSubmit(event) {
 
   async function handleSubmit(event) {
     event.preventDefault();
