@@ -12,15 +12,14 @@ export default function Router() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
-        <Route path="pets" element={<IndexScreen />} />
         <Route index element={<Navigate to="/pets" replace />} />
         <Route path="register" element={<RegisterScreen />} />
         <Route path="login" element={<LoginScreen />} />
         <Route element={<TokenGuard />}>
-          <Route path="element" element={<IndexScreen />} />
-          <Route path="element/create" element={<CreateScreen />} />
-          <Route path="element/edit/:id" element={<EditScreen />} />
-          <Route path="element/:id" element={<DetailScreen />} />
+          <Route path="/pets" element={<IndexScreen />} />
+          <Route path="/pets/create" element={<CreateScreen />} />
+          <Route path="/pets/edit/:id" element={<EditScreen />} />
+          <Route path="/pets/:id" element={<DetailScreen />} />
         </Route>
 
         <Route path="*" element={<Navigate to="/pets" replace />} />
