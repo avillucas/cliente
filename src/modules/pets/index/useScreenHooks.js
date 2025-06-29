@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { ApiService } from "./api";
 import { useSpinner } from "../../../context/SpinnerContext";
 import { useGlobal } from "../../../context/GlobalContext";
+import { AlertService } from "../../../services/alertService";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
@@ -47,10 +48,21 @@ export default function useScreenHooks() {
       showCancelButton: true,
       confirmButtonText: "Sí, eliminar",
       cancelButtonText: "Cancelar",
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
-        //@todo realizar la peticion y refrezcar
-        navigate(`/pets/delete/${petId}`);
+        try {
+          if (!isLoading) show();
+          await ApiService.deletePet(petId);
+          hide();
+          const alertResponse = await AlertService.showSuccess(
+            "La mascota ha sido eliminada correctamente"
+          );
+          if (alertResponse.value) navigate("/pets");
+        } catch (error) {
+          console.log("Error fetching data:", error);
+        }
+      } else {
+        console.log("Eliminación cancelada");
       }
     });
   };
