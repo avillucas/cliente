@@ -31,11 +31,11 @@ export default function useScreenHooks() {
 
   const handleDetail = (e, petId) => {
     e.preventDefault();
-    navigate(`/pet/${petId}`);
+    navigate(`/pets/${petId}`);
   };
   const handleEdit = (e, petId) => {
     e.preventDefault();
-    navigate(`/pet/edit/${petId}`);
+    navigate(`/pets/edit/${petId}`);
   };
 
   const handleDelete = (e, petId) => {
