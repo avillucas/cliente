@@ -13,13 +13,9 @@ export default function Nav() {
       <div className="position-sticky pt-3">
         <ul className="nav flex-column">
           <li className="nav-item">
-            <NavLink to="/" className="nav-link ">
-              <span data-feather="home"></span>
-              Panel de control
-            </NavLink>
             <NavLink to="/pets" className="nav-link ">
               <span data-feather="file"></span>
-              Mascotas
+              Listar Mascotas
             </NavLink>
           </li>
           <li className="nav-item dropdown "></li>
